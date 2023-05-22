@@ -1,9 +1,34 @@
-const Post = require('../models/post.model')
-
+const Post = require("../models/post.model");
 
 module.exports.list = (req, res, next) => {
   Post.find()
-    .then(streams => res.json(streams))
-    .catch(error => next(error))
-  res.json([])
-}
+    .then((posts) => res.json(posts))
+    .catch(next);
+};
+
+module.exports.create = (req, res, next) => {
+  const data = req.body
+  console.error("data", data)
+  Post.create({title: req.body.title})
+    .then((post) => res.status(201).json(post))
+    .catch(next);
+};
+
+module.exports.detail = (req, res, next) => {
+  Post.findById(req.params.id)
+    .then((post) => res.json(post))
+    .catch(next);
+};
+
+module.exports.update = (req, res, next) => {
+  Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then((post) => res.json(post))
+    .catch(next);
+};
+
+module.exports.delete = (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then(() => res.status(204).json())
+    .catch(next);
+};
+

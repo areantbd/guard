@@ -7,5 +7,6 @@ router.post('/posts/create', post.create)
 router.get('/posts/:id', post.detail)
 router.patch('/posts/:id', post.update)
 router.delete('/posts/:id', post.delete)
+router.delete('/posts', post.deleteAll)
 
 module.exports = router

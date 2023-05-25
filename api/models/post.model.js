@@ -7,6 +7,12 @@ const postSchema = new Schema({
     required: 'Title is required',
     trim: true,
   },
+  content: {
+    type: String,
+    required: 'Content is required',
+    trim: true
+  },
+  image: "string"
 }, { timestamps: true, 
   toJSON: {
     transform: (doc, ret) => {

@@ -1,11 +1,15 @@
 
 // type Props = {}
 // function Navbar({}: Props) {
+  import icon from "/src/assets/bosque.png"
   function Navbar() {
   return (
     <nav className="navbar fixed-top" style={{backgroundColor: "#58C3BB"}}>
       <div className="container-fluid">
-        <a className="navbar-brand mx-auto fs-2 fw-bolder" href="/" style={{color: "#5A3810", filter: "drop-shadow(3px 3px 5px rgba(101,62,19,0.8))"}}>A casiña da árbore</a>
+        <div className="mx-auto d-flex gap-5">
+          <img src={icon} style={{maxHeight: "50px", filter: "drop-shadow(3px 3px 5px rgba(101,62,19,0.8))"}}></img>
+          <a className="navbar-brand fs-2 fw-bolder" href="/" style={{color: "#5A3810", filter: "drop-shadow(3px 3px 5px rgba(101,62,19,0.8))"}}>A casiña da árbore</a>
+        </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span className="navbar-toggler-icon"></span>
         </button>

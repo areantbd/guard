@@ -2,7 +2,7 @@
 
 function MainScreen() {
   return (
-    <div>Páxina principallijlj</div>
+    <div>Páxina principal</div>
   )
 }
 

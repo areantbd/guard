@@ -3,8 +3,15 @@ import axios from 'axios'
 import PostCard from '../../components/post-card/PostCard'
 import { useEffect, useState } from 'react'
 
+interface Post{
+  title: string,
+  content: string,
+  image: string
+  id: number
+}
+
 function PostsScreen() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Array<Post>>()
 
   useEffect(() => {
     axios.get("http://localhost:3001/api/v1/posts")
@@ -13,8 +20,8 @@ function PostsScreen() {
   }, [])
   return (
     <div className='mt-5'>
-      {posts && posts.map((post: object ) => (
-        <PostCard title={''} content={''} image={''} {...post}/>
+      {posts && posts.map((post) => (
+          <PostCard {...post} key={post.id} />
       ))}
     </div>
   )

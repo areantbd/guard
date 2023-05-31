@@ -1,4 +1,6 @@
 const Post = require("../models/post.model");
+const createError = require("http-errors");
+
 
 module.exports.list = (req, res, next) => {
   Post.find()
@@ -7,8 +9,7 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
-  const data = req.body;
-  console.error("data", data);
+  
   Post.create({
     title: req.body.title,
     content: req.body.content,
@@ -20,19 +21,41 @@ module.exports.create = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Post.findById(req.params.id)
-    .then((post) => res.json(post))
+  .then((post) => {
+    if (post) {
+      res.status(201).json(post)
+    } else {
+      next(createError(404, "Post not found"))
+    }
+  })
     .catch(next);
 };
 
 module.exports.update = (req, res, next) => {
-  Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then((post) => res.json(post))
+  Post.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+    content: req.body.content,
+    // image: req.body.image,
+  }, { new: true, runValidators: true })
+  .then((post) => {
+    if (post) {
+      res.status(201).json(post)
+    } else {
+      next(createError(404, "Post not found"))
+    }
+  })
     .catch(next);
 };
 
 module.exports.delete = (req, res, next) => {
   Post.findByIdAndDelete(req.params.id)
-    .then(() => res.status(204).json())
+  .then((post) => {
+    if (post) {
+      res.status(204).send()
+    } else {
+      next(createError(404, "Post not found"))
+    }
+  })
     .catch(next);
 };
 

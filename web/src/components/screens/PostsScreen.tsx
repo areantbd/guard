@@ -19,10 +19,10 @@ function PostsScreen() {
       .catch((error) => console.error(error))
   }, [])
   return (
-    <div className='mt-5'>
+    <div className='mt-5 pt-5'>
       {posts && posts.map((post) => (
           <PostCard {...post} key={post.id} />
-      ))}
+      )).reverse()}
     </div>
   )
 }

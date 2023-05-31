@@ -1,6 +1,7 @@
 import axios from 'axios'
 import PostCard from '../../components/post-card/PostCard'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 interface Post{
   title: string,
@@ -20,21 +21,27 @@ function MainScreen() {
   }, [])
   return (
     <>
-      <header className='border bg-light container'>
+      <header className='bg-light container bg-opacity-50 rounded py-1 px-3 mt-5 mt-md-1'>
         <h1 className='text-decoration-underline mt-2 mb-4'>Escola infantil A casiña da árbore</h1>
-        <h3>
+        <h4>
           Somos unha escola infantil para nenos dende 0 ata 3 anos que conta coas mellores e máis seguras instalacións para que nenas e nenos poidan desenvolver as habilidades e capacidades acordes coa súa idade. 
           <br/>
           <br/>
           Ubicada en Portomarín, estamos abertos de luns a venres de 9:00  a 19:00 
-        </h3>
+        </h4>
+        <div className='d-flex mb-2'>
+          <Link to={'/conocenos'} className='btn btn-outline-light ms-auto'>Saber máis</Link>
+        </div>
       </header>
-      <section className='mt-5 row'>
+      <section className='mt-5 row container'>
         {posts && lastPosts?.map((post) => (
           <div className='col-4'>
             <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} />
           </div>
         ))}
+        <div className='d-flex mb-2 '>
+          <Link to={'/posts'} className='btn btn-outline-light ms-auto'>Ver Posts</Link>
+        </div>
       </section>
     </>
   )

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 interface Post{
   title: string,
   content: string,
-  image: string
+  image: string,
   id: number
 }
 

@@ -21,7 +21,7 @@ function MainScreen() {
   }, [])
   return (
     <>
-      <header className='bg-light container bg-opacity-50 rounded py-1 px-3 mt-5 mt-md-1'>
+      <header className='main-header bg-light container bg-opacity-50 rounded py-1 px-3'>
         <h1 className='text-decoration-underline mt-2 mb-4'>Escola infantil A casiña da árbore</h1>
         <h4>
           Somos unha escola infantil para nenos dende 0 ata 3 anos que conta coas mellores e máis seguras instalacións para que nenas e nenos poidan desenvolver as habilidades e capacidades acordes coa súa idade. 
@@ -39,7 +39,7 @@ function MainScreen() {
             <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} />
           </div>
         ))}
-        <div className='d-flex mb-2 '>
+        <div className='d-flex mb-2 mt-1'>
           <Link to={'/posts'} className='btn btn-outline-light ms-auto'>Ver Posts</Link>
         </div>
       </section>

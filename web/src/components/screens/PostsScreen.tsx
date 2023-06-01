@@ -2,6 +2,7 @@
 import axios from 'axios'
 import PostCard from '../../components/post-card/PostCard'
 import { useEffect, useState } from 'react'
+import ScrollToTop from '../UI/ScrollToTop'
 
 interface Post{
   title: string,
@@ -23,6 +24,7 @@ function PostsScreen() {
       {posts && posts.map((post) => (
           <PostCard {...post} key={post.id} />
       )).reverse()}
+      <ScrollToTop />
     </div>
   )
 }

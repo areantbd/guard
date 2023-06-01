@@ -1,8 +1,12 @@
+import ScrollToTop from "../UI/ScrollToTop"
 
 
 function AboutUs() {
   return (
-    <div>Coñécenos</div>
+    <div>
+      Coñécenos
+      <ScrollToTop />
+    </div>
   )
 }
 

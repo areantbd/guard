@@ -12,7 +12,7 @@ function PostCard({title, content, image, id}: Props) {
       <div className="container main-post-card">
         <h1>{title}</h1>
         <h3>{content}</h3>
-        <img src={image} alt={title} width={"90%"} className="mt-3"/>
+        <img src={image} alt={title} width={"90%"} className="mt-3" style={{maxHeight:250}}/>
       </div>
     </Link>
   )

@@ -1,21 +1,34 @@
 import axios from 'axios';
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
   title: string,
   content: string,
-  image: string,  
+  image: string, 
+  error: string
 };
 
 
 function CreatePost() {
+  const navigate = useNavigate()
 
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Inputs>({
+  const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm<Inputs>({
     mode: 'onBlur',  });
   const onSubmit: SubmitHandler<Inputs> = data => {
     console.log(data);
     axios.post('http://localhost:3001/api/v1/posts/create', data)
-      .then((data) => console.log(`Post ${data} created`))
+      .then((data) => {
+        console.log(`Post ${data.data.title} created`)
+        navigate('/')
+      })
+      .catch((error) => {
+        if (error.response?.data?.errors) {
+          const { errors } = error.response.data
+          Object.keys(error.response.data.errors)
+            .forEach((error) => setError("error", {message: errors[error].message}))
+        }
+      })
   }
 
   console.log(errors)
@@ -29,7 +42,7 @@ function CreatePost() {
             required: 'Es necesario un título',
             maxLength:  {
               value: 50, 
-              message: 'El título no debe tener más de 100 caracteres.'
+              message: 'El título no debe tener más de 50 caracteres.'
             }
           })} />
           {errors.title && (<div className='invalid-feedback'>{errors?.title?.message}</div>)}
@@ -37,7 +50,7 @@ function CreatePost() {
 
       <div className="input-group mb-3 ">
         <span className="input-group-text"><i className='fa fa-edit fa-fw'></i></span>
-        <input placeholder='Contenido' className={`form-control ${errors.title ? 'is-invalid' : ''}`}  {...register("content", { required: 'Es necesario un contenido' })} />
+        <textarea placeholder='Contenido' className={`form-control ${errors.title ? 'is-invalid' : ''}`}  {...register("content", { required: 'Es necesario un contenido' })} />
         {errors.content && <div className='invalid-feedback'>{errors?.content?.message}</div>}
       </div>
 

@@ -2,6 +2,7 @@ import axios from 'axios'
 import PostCard from '../post-card/PostCard'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Section from '../section/Section'
 
 interface Post{
   title: string,
@@ -33,16 +34,16 @@ function MainScreen() {
           <Link to={'/conocenos'} className='btn btn-outline-light ms-auto'>Saber máis</Link>
         </div>
       </header>
-      <section className='mt-5 row container'>
-        {posts && lastPosts?.map((post) => (
-          <div className='col-4'>
-            <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} />
-          </div>
-        ))}
+      <Section className='mt-5 row container mx-auto' title='Posts' icon='book'>
         <div className='d-flex mb-2 mt-1'>
           <Link to={'/posts'} className='btn btn-outline-light ms-auto'>Ver Posts</Link>
         </div>
-      </section>
+        {posts && lastPosts?.map((post) => (
+          <div className='col-4 mt-2'>
+            <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} />
+          </div>
+        ))}
+      </Section>
     </>
   )
 }

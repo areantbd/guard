@@ -6,6 +6,7 @@ const postSchema = new Schema({
     type: String,
     required: 'Title is required',
     trim: true,
+    maxLenght: [100, 'Title must be <= 100 chars.']
   },
   content: {
     type: String,

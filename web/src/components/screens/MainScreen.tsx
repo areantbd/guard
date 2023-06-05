@@ -1,5 +1,5 @@
 import axios from 'axios'
-import PostCard from '../../components/post-card/PostCard'
+import PostCard from '../post-card/PostCard'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 

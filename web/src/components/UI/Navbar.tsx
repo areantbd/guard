@@ -30,19 +30,19 @@ import icon from "/src/assets/bosque.png"
               <li className="nav-item">
                 <NavLink className={({ isActive }) => isActive ? 'nav-link active fs-3 fw-bolder' : 'nav-link fs-3 fw-bold'} to="/posts">Posts</NavLink>
               </li>
-              {/* <li className="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a className="nav-link fs-3 fw-bolder  dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Máis accións
+                  Administrador
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
+                  <li><Link className="dropdown-item" to="/posts/create-post">Crear Post</Link></li>
+                  {/* <li><a className="dropdown-item" href="#">Another action</a></li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
+                  <li><a className="dropdown-item" href="#">Something else here</a></li> */}
                 </ul>
-              </li> */}
+              </li>
             </ul>
             {/* <form className="d-flex mt-3" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

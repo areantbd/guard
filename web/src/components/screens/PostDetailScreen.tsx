@@ -21,10 +21,12 @@ function PostDetailScreen() {
   }, [id.id])
 
   return (
-    <div className="mt-5">
-      <h1 >{post?.title}</h1>
-      <h3>{post?.content}</h3>
-      <img className="w-75" src={post?.image} alt={post?.title} />
+    <div className="mt-5 pt-5 container d-flex justify-content-between gap-5">
+      <div className="my-auto" style={{maxWidth: "50%"}}>
+        <h1 >{post?.title}</h1>
+        <h3>{post?.content}</h3>
+      </div>
+      <img className="w-50 rounded" src={post?.image} alt={post?.title} />
     </div>
   )
 }

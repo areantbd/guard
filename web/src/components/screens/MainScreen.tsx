@@ -8,7 +8,9 @@ interface Post{
   title: string,
   content: string,
   image: string,
-  id: number
+  id: number,
+  date: false,
+  createdAt: string
 }
 
 function MainScreen() {
@@ -40,7 +42,7 @@ function MainScreen() {
         </div>
         {posts && lastPosts?.map((post) => (
           <div className='col-4 mt-2'>
-            <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} />
+            <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} createdAt={post.createdAt} date={false}/>
           </div>
         ))}
       </Section>

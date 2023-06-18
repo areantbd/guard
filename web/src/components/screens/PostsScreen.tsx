@@ -9,7 +9,9 @@ interface Post{
   title: string,
   content: string,
   image: string,
-  id: number
+  id: number,
+  createdAt: string
+  date: boolean
 }
 
 function PostsScreen() {
@@ -19,13 +21,17 @@ function PostsScreen() {
     axios.get("http://localhost:3001/api/v1/posts")
       .then((data) => setPosts(data.data))
       .catch((error) => console.error(error))
+    
   }, [])
+  
+
+  console.log(posts)
   return (
-    <div className='mt-5 pt-5'>
+    <div className='mt-5 pt-5 container'>
       <Section title="Posts" icon='edit' className=''>
-        <div className="">
+        <div className="d-flex flex-wrap gap-1 justify-content-around">
           {posts && posts.map((post) => (
-            <PostCard {...post} key={post.id}/>
+            <PostCard title={post.title} image={post.image} key={post.id} content={''} id={post.id} createdAt={post.createdAt} date={true}/>
             )).reverse()}
           <ScrollToTop />
         </div>

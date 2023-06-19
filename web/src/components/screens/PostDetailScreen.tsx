@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 interface Post{
   title: string,
@@ -13,6 +13,7 @@ function PostDetailScreen() {
   const id = useParams()
   const [post, setPost] = useState<Post>()
   console.log(post)
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get(`http://localhost:3001/api/v1/posts/${id.id}`)
@@ -21,12 +22,15 @@ function PostDetailScreen() {
   }, [id.id])
 
   return (
-    <div className="mt-5 pt-5 container d-flex justify-content-between gap-5">
-      <div className="my-auto" style={{maxWidth: "50%"}}>
-        <h1 >{post?.title}</h1>
-        <h3>{post?.content}</h3>
+    <div className="safearea">
+      <button onClick={() => navigate(-1)} className="btn btn-sm btn-outline-light mb-5">Volver atrás</button>
+      <div className=" container d-flex justify-content-between gap-5">
+        <div className="my-auto" style={{maxWidth: "50%"}}>
+          <h1 >{post?.title}</h1>
+          <h3>{post?.content}</h3>
+        </div>
+        <img className="w-50 rounded" src={post?.image} alt={post?.title} />
       </div>
-      <img className="w-50 rounded" src={post?.image} alt={post?.title} />
     </div>
   )
 }
